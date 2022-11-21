@@ -28,20 +28,21 @@ namespace mv{
         void createImage(uint32_t width, uint32_t height, uint32_t mipLevels, VkSampleCountFlagBits numSamples, VkFormat format, VkImageTiling tiling, VkImageUsageFlags usage, VkMemoryPropertyFlags properties, VkImage& image, VkDeviceMemory& imageMemory);
         void createFramebuffers();
         void createSyncObjects();
-        const int &getMFIF(){return MAX_FRAMES_IN_FLIGHT;}
-        VkRenderPass &getRenderPass(){return renderPass;}
-        std::vector<VkFence> &getIFF(){return inFlightFences;}
-        uint32_t &getCurrentFrame(){return currentFrame;}
-        VkSwapchainKHR &getSwapChain(){return swapChain;}
-        VkExtent2D &getSwapChainExtent(){return swapChainExtent;}
-        std::vector<VkSemaphore> &getIAS(){return imageAvailableSemaphores;}
-        std::vector<VkFramebuffer> &getSwapChainFrameBuffers(){return swapChainFramebuffers;}
+        const int getMFIF(){return MAX_FRAMES_IN_FLIGHT;}
+        VkRenderPass getRenderPass(){return renderPass;}
+        std::vector<VkFence> getIFF(){return inFlightFences;}
+        uint32_t getCurrentFrame(){return currentFrame;}
+        VkSwapchainKHR getSwapChain(){return swapChain;}
+        VkExtent2D getSwapChainExtent(){return swapChainExtent;}
+        std::vector<VkSemaphore> getIAS(){return imageAvailableSemaphores;}
+        std::vector<VkFramebuffer> getSwapChainFrameBuffers(){return swapChainFramebuffers;}
         void changeCurrentFrame(){currentFrame = (currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;}
-        std::vector<VkSemaphore> &getRFS(){return renderFinishedSemaphores;}
+        std::vector<VkSemaphore> getRFS(){return renderFinishedSemaphores;}
         
         private:
         Device &dev;
         Window &win;
+        int one = 1;
         // std::shared_ptr<Device> dev = std::make_shared<Device>();
         VkSwapchainKHR swapChain;
         std::vector<VkImage> swapChainImages;

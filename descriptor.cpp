@@ -41,8 +41,7 @@ namespace mv{
             throw std::runtime_error("failed to allocate descriptor sets!");
         }
 
-        // for (size_t i = 0; i < sc.getMFIF(); i++) {
-            size_t i = 0;
+        for (size_t i = 0; i < sc.getMFIF(); i++) {
             VkDescriptorBufferInfo bufferInfo = {VK_NULL_HANDLE};
             bufferInfo.buffer = mod.getUniformBuffers()[i];
             bufferInfo.offset = 0;
@@ -71,7 +70,7 @@ namespace mv{
             descriptorWrites[1].descriptorCount = 1;
             descriptorWrites[1].pImageInfo = &imageInfo;
 
-            vkUpdateDescriptorSets(dev.getDevice(), static_cast<uint32_t>(descriptorWrites.size()), descriptorWrites.data(), 0, nullptr);
-        // }
+            vkUpdateDescriptorSets(dev.getDevice(), descriptorWrites.size(), descriptorWrites.data(), 0, nullptr);
+        }
     }
 }

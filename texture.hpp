@@ -15,15 +15,15 @@ namespace mv{
         Texture &operator=(const Texture &) = delete;
         Texture(Texture &&) = delete;
         Texture &operator=(Texture &&) = delete;
-        
+
         void createTextureImage(std::string TEXTURE_PATH);
         void transitionImageLayout(VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout, uint32_t mipLevels);
         void generateMipmaps(VkImage image, VkFormat imageFormat, int32_t texWidth, int32_t texHeight, uint32_t mipLevels);
         void createTextureImageView();
         void createTextureSampler();
         VkImageView createImageView(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags, uint32_t mipLevels);
-        VkImageView &getTextureImageView(){return textureImageView;}
-        VkSampler &getTextureSampler(){return textureSampler;}
+        VkImageView getTextureImageView(){return textureImageView;}
+        VkSampler getTextureSampler(){return textureSampler;}
         private:
         uint32_t mipLevels;
         VkImage textureImage;

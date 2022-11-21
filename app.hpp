@@ -37,7 +37,7 @@ namespace mv{
         Texture tex{"viking_room.png", dev, sc};
         Model mod{"viking_room.obj", dev, sc};
         Descriptor des{dev, sc, lay, tex, mod};
-        // Renderer ren{win, dev, sc};
+        Renderer ren{win, dev, sc};
         // Swapchain sc;
         // Renderer& ren;
         // Pipeline& pipe;

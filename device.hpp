@@ -54,19 +54,19 @@ namespace mv{
         VkSampleCountFlagBits getMaxUsableSampleCount();
         QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
         void createCommandPool();
-        VkPhysicalDevice &getPhysicalDevice(){return physicalDevice;}
-        VkSurfaceKHR &getSurface(){return surface;}
-        VkDevice &getDevice(){return device;}
-        VkSampleCountFlagBits &getMsaaSamples(){return msaaSamples;}
+        VkPhysicalDevice getPhysicalDevice(){return physicalDevice;}
+        VkSurfaceKHR getSurface(){return surface;}
+        VkDevice getDevice(){return device;}
+        VkSampleCountFlagBits getMsaaSamples(){return msaaSamples;}
         uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
         void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
         VkCommandBuffer beginSingleTimeCommands();
         void endSingleTimeCommands(VkCommandBuffer commandBuffer);
         void copyBuffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
         void copyBufferToImage(VkBuffer buffer, VkImage image, uint32_t width, uint32_t height);
-        VkCommandPool &getCommandPool(){return commandPool;}
-        VkQueue &getPresentQueue(){return presentQueue;}
-        VkQueue &getGraphicsQueue(){return graphicsQueue;}
+        VkCommandPool getCommandPool(){return commandPool;}
+        VkQueue getPresentQueue(){return presentQueue;}
+        VkQueue getGraphicsQueue(){return graphicsQueue;}
         
         private:
         bool enableValidationLayers = true;

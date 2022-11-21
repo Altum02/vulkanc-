@@ -24,11 +24,11 @@ namespace mv{
         void createIndexBuffer();
         void createUniformBuffers();
         std::vector<VkBuffer> &getUniformBuffers(){return uniformBuffers;}
-        std::vector<VkDeviceMemory> &getUniformBuffersMemory(){return uniformBuffersMemory;}
-        std::vector<Vertex> &getVertices(){return vertices;}
-        std::vector<uint32_t> &getIndices(){return indices;}
-        VkBuffer &getVertexBuffer(){return vertexBuffer;}
-        VkBuffer &getIndexBuffer(){return indexBuffer;}
+        std::vector<VkDeviceMemory> getUniformBuffersMemory(){return uniformBuffersMemory;}
+        std::vector<Vertex> getVertices(){return vertices;}
+        std::vector<uint32_t> getIndices(){return indices;}
+        VkBuffer getVertexBuffer(){return vertexBuffer;}
+        VkBuffer getIndexBuffer(){return indexBuffer;}
         std::vector<VkBuffer> uniformBuffers;
         private:
         std::vector<Vertex> vertices;

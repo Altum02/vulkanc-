@@ -78,8 +78,8 @@ namespace mv{
         void createGraphicsPipeline();
         static std::vector<char> readFile(const std::string& filename);
         VkShaderModule createShaderModule(const std::vector<char>& code);
-        VkPipeline &getGraphicsPipeline(){return graphicsPipeline;}
-        VkPipelineLayout &getPipelineLayout(){return pipelineLayout;}
+        VkPipeline getGraphicsPipeline(){return graphicsPipeline;}
+        VkPipelineLayout getPipelineLayout(){return pipelineLayout;}
         private:
         VkPipelineLayout pipelineLayout;
         VkPipeline graphicsPipeline;

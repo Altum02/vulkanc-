@@ -14,7 +14,7 @@ namespace mv{
 
         void createCommandBuffers();
         void recreateSwapChain();
-        std::vector<VkCommandBuffer> &getCommandBuffers(){return commandBuffers;}
+        std::vector<VkCommandBuffer> getCommandBuffers(){return commandBuffers;}
         void freeCommandBuffers();
         private:
         Device &dev;
