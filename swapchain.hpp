@@ -8,8 +8,11 @@
 namespace mv{
     class Swapchain{
         public:
-        Swapchain(Window win, Device dev);
+        Swapchain(Window &win, Device &dev);
         ~Swapchain();
+        Swapchain(const Swapchain &) = delete;
+        Swapchain &operator=(const Swapchain &) = delete;
+
         void createSwapChain();
         VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
         VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
@@ -25,20 +28,20 @@ namespace mv{
         void createImage(uint32_t width, uint32_t height, uint32_t mipLevels, VkSampleCountFlagBits numSamples, VkFormat format, VkImageTiling tiling, VkImageUsageFlags usage, VkMemoryPropertyFlags properties, VkImage& image, VkDeviceMemory& imageMemory);
         void createFramebuffers();
         void createSyncObjects();
-        const int getMFIF(){return MAX_FRAMES_IN_FLIGHT;}
-        VkRenderPass getRenderPass(){return renderPass;}
-        std::vector<VkFence> getIFF(){return inFlightFences;}
-        uint32_t getCurrentFrame(){return currentFrame;}
-        VkSwapchainKHR getSwapChain(){return swapChain;}
-        VkExtent2D getSwapChainExtent(){return swapChainExtent;}
-        std::vector<VkSemaphore> getIAS(){return imageAvailableSemaphores;}
-        std::vector<VkFramebuffer> getSwapChainFrameBuffers(){return swapChainFramebuffers;}
+        const int &getMFIF(){return MAX_FRAMES_IN_FLIGHT;}
+        VkRenderPass &getRenderPass(){return renderPass;}
+        std::vector<VkFence> &getIFF(){return inFlightFences;}
+        uint32_t &getCurrentFrame(){return currentFrame;}
+        VkSwapchainKHR &getSwapChain(){return swapChain;}
+        VkExtent2D &getSwapChainExtent(){return swapChainExtent;}
+        std::vector<VkSemaphore> &getIAS(){return imageAvailableSemaphores;}
+        std::vector<VkFramebuffer> &getSwapChainFrameBuffers(){return swapChainFramebuffers;}
         void changeCurrentFrame(){currentFrame = (currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;}
-        std::vector<VkSemaphore> getRFS(){return renderFinishedSemaphores;}
+        std::vector<VkSemaphore> &getRFS(){return renderFinishedSemaphores;}
         
         private:
-        Device dev;
-        Window win;
+        Device &dev;
+        Window &win;
         // std::shared_ptr<Device> dev = std::make_shared<Device>();
         VkSwapchainKHR swapChain;
         std::vector<VkImage> swapChainImages;

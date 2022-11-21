@@ -5,9 +5,9 @@
 #include "stb_image.h"
 
 namespace mv{
-    Texture::Texture(std::string texturePath, Device dev, Swapchain sc) : dev{dev}, sc{sc}{
-        this->dev = dev;
-        this->sc = sc;
+    Texture::Texture(std::string texturePath, Device &dev, Swapchain &sc) : dev{dev}, sc{sc}{
+        // this->dev = dev;
+        // this->sc = sc;
         createTextureImage(texturePath);//texture
         createTextureImageView();//texture
         createTextureSampler();

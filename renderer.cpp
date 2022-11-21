@@ -1,10 +1,10 @@
 #include "renderer.hpp"
 
 namespace mv{
-    Renderer::Renderer(Window win, Device dev, Swapchain sc): win{win}, dev{dev}, sc{sc}{
-        this->win = win;
-        this->dev = dev;
-        this->sc = sc;
+    Renderer::Renderer(Window &win, Device &dev, Swapchain &sc): win{win}, dev{dev}, sc{sc}{
+        // this->win = win;
+        // this->dev = dev;
+        // this->sc = sc;
         createCommandBuffers();
     }
     Renderer::~Renderer(){

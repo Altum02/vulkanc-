@@ -1,8 +1,8 @@
 #include "layout.hpp"
 
 namespace mv{
-    Layout::Layout(Device dev): dev{dev}{
-        this->dev = dev;
+    Layout::Layout(Device &dev): dev{dev}{
+        // this->dev = dev;
         createDescriptorSetLayout();
     }
     Layout::~Layout(){

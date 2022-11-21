@@ -2,9 +2,9 @@
 #include <iostream>
 
 namespace mv{
-    Swapchain::Swapchain(Window win, Device dev): win{win}, dev{dev}{
-        this->win = win;
-        this->dev = dev;
+    Swapchain::Swapchain(Window &win, Device &dev): win{win}, dev{dev}{
+        // this->win = win;
+        // this->dev = dev;
         createSwapChain();
         createImageViews();
         createRenderPass();

@@ -1,10 +1,10 @@
 #include "pipeline.hpp"
 
 namespace mv{
-    Pipeline::Pipeline(Device dev, Swapchain sc, Layout lay): dev{dev}, sc{sc}, lay{lay}{
-        this->dev = dev;
-        this->sc = sc;
-        this->lay = lay;
+    Pipeline::Pipeline(Device &dev, Swapchain &sc, Layout &lay): dev{dev}, sc{sc}, lay{lay}{
+        // this->dev = dev;
+        // this->sc = sc;
+        // this->lay = lay;
         createGraphicsPipeline();
     }
     Pipeline::~Pipeline(){

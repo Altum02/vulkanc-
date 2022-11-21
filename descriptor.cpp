@@ -2,8 +2,8 @@
 #include <vulkan/vulkan_core.h>
 
 namespace mv{
-    Descriptor::Descriptor(Device dev, Swapchain sc, Layout lay, Texture tex, Model mod): dev{dev}, sc{sc}, lay{lay}, tex{tex}, mod{mod}{
-        this->dev = dev;
+    Descriptor::Descriptor(Device &dev, Swapchain &sc, Layout &lay, Texture &tex, Model &mod): dev{dev}, sc{sc}, lay{lay}, tex{tex}, mod{mod}{
+        // this->dev = dev;
         createDescriptorPool();
         createDescriptorSets();
     }
@@ -41,7 +41,8 @@ namespace mv{
             throw std::runtime_error("failed to allocate descriptor sets!");
         }
 
-        for (size_t i = 0; i < sc.getMFIF(); i++) {
+        // for (size_t i = 0; i < sc.getMFIF(); i++) {
+            size_t i = 0;
             VkDescriptorBufferInfo bufferInfo = {VK_NULL_HANDLE};
             bufferInfo.buffer = mod.getUniformBuffers()[i];
             bufferInfo.offset = 0;
@@ -71,6 +72,6 @@ namespace mv{
             descriptorWrites[1].pImageInfo = &imageInfo;
 
             vkUpdateDescriptorSets(dev.getDevice(), static_cast<uint32_t>(descriptorWrites.size()), descriptorWrites.data(), 0, nullptr);
-        }
+        // }
     }
 }

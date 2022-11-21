@@ -70,19 +70,22 @@ struct UniformBufferObject {
 namespace mv{
     class Pipeline{
         public:
-        Pipeline(Device dev, Swapchain sc, Layout lay);
+        Pipeline(Device &dev, Swapchain &sc, Layout &lay);
         ~Pipeline();
+        Pipeline(const Pipeline&) = delete;
+        Pipeline& operator=(const Pipeline&) = delete;
+
         void createGraphicsPipeline();
         static std::vector<char> readFile(const std::string& filename);
         VkShaderModule createShaderModule(const std::vector<char>& code);
-        VkPipeline getGraphicsPipeline(){return graphicsPipeline;}
-        VkPipelineLayout getPipelineLayout(){return pipelineLayout;}
+        VkPipeline &getGraphicsPipeline(){return graphicsPipeline;}
+        VkPipelineLayout &getPipelineLayout(){return pipelineLayout;}
         private:
         VkPipelineLayout pipelineLayout;
         VkPipeline graphicsPipeline;
-        Device dev;
-        Swapchain sc;
-        Layout lay;
+        Device &dev;
+        Swapchain &sc;
+        Layout &lay;
 
         // std::shared_ptr<Device> dev = std::make_shared<Device>();
         // std::shared_ptr<Swapchain> sc = std::make_shared<Swapchain>();

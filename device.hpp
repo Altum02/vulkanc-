@@ -33,13 +33,13 @@ namespace mv{
         Device &operator=(Device &&) = delete;
                 // Device (const Device& ) = default;
         // Device (Device& ) = default;	
-        Device(Window win);
+        Device(Window &win);
         ~Device();
         void createInstance();
-        const bool getEnableValidationLayers(){return  enableValidationLayers;}
+        const bool &getEnableValidationLayers(){return  enableValidationLayers;}
         bool checkValidationLayerSupport();
         std::vector<const char*> getRequiredExtensions();
-        const std::vector<const char*> getValidationLayers(){return validationLayers;}
+        const std::vector<const char*> &getValidationLayers(){return validationLayers;}
         void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
         static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData);
         void setupDebugMessenger();
@@ -54,19 +54,19 @@ namespace mv{
         VkSampleCountFlagBits getMaxUsableSampleCount();
         QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
         void createCommandPool();
-        VkPhysicalDevice getPhysicalDevice(){return physicalDevice;}
-        VkSurfaceKHR getSurface(){return surface;}
-        VkDevice getDevice(){return device;}
-        VkSampleCountFlagBits getMsaaSamples(){return msaaSamples;}
+        VkPhysicalDevice &getPhysicalDevice(){return physicalDevice;}
+        VkSurfaceKHR &getSurface(){return surface;}
+        VkDevice &getDevice(){return device;}
+        VkSampleCountFlagBits &getMsaaSamples(){return msaaSamples;}
         uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
         void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
         VkCommandBuffer beginSingleTimeCommands();
         void endSingleTimeCommands(VkCommandBuffer commandBuffer);
         void copyBuffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
         void copyBufferToImage(VkBuffer buffer, VkImage image, uint32_t width, uint32_t height);
-        VkCommandPool getCommandPool(){return commandPool;}
-        VkQueue getPresentQueue(){return presentQueue;}
-        VkQueue getGraphicsQueue(){return graphicsQueue;}
+        VkCommandPool &getCommandPool(){return commandPool;}
+        VkQueue &getPresentQueue(){return presentQueue;}
+        VkQueue &getGraphicsQueue(){return graphicsQueue;}
         
         private:
         bool enableValidationLayers = true;
@@ -80,7 +80,7 @@ namespace mv{
         VkApplicationInfo appInfo{};
         VkInstanceCreateInfo createInfo{};
         const VkAllocationCallbacks* pAllocator = nullptr;
-        Window win;
+        Window &win;
         // std::shared_ptr<Window> win = std::make_shared<Window>();
         // std::shared_ptr<Window> win = std::make_shared<Window>();
         VkQueue graphicsQueue;

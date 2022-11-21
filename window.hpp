@@ -8,9 +8,11 @@ namespace mv{
         public:
         Window();
         ~Window();
-        GLFWwindow* getWindow(){return window;}
+        Window(const Window &) = delete;
+        Window &operator=(const Window &) = delete;
+        GLFWwindow* &getWindow(){return window;}
         static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
-        bool getFramebufferResized(){return framebufferResized;}
+        bool &getFramebufferResized(){return framebufferResized;}
         void setFramebufferResizedFalse(){framebufferResized = false;}
         private:
         GLFWwindow* window;

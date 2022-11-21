@@ -4,9 +4,9 @@
 #include "tiny_obj_loader.h"
 
 namespace mv{
-    Model::Model(std::string MODEL_PATH, Device dev, Swapchain sc): dev{dev}, sc{sc}{
-        this->dev = dev;
-        this->sc = sc;
+    Model::Model(std::string MODEL_PATH, Device &dev, Swapchain &sc): dev{dev}, sc{sc}{
+        // this->dev = dev;
+        // this->sc = sc;
         void loadModel(std::string MODEL_PATH);
         void createVertexBuffer();
         void createIndexBuffer();

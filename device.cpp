@@ -1,8 +1,8 @@
 #include "device.hpp"
 
 namespace mv{
-    Device::Device(Window win): win{win}{
-        this->win = win;
+    Device::Device(Window &win): win{win}{
+        // this->win = win;
         createInstance();
         setupDebugMessenger();
         createSurface();
