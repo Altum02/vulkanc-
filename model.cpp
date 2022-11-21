@@ -17,6 +17,10 @@ namespace mv{
         vkFreeMemory(dev.getDevice(), indexBufferMemory, nullptr);
         vkDestroyBuffer(dev.getDevice(), vertexBuffer, nullptr);
         vkFreeMemory(dev.getDevice(), vertexBufferMemory, nullptr);
+        for (size_t i = 0; i < sc.getMFIF(); i++) {
+            vkDestroyBuffer(dev.getDevice(), getUniformBuffers()[i], nullptr);
+            vkFreeMemory(dev.getDevice(), getUniformBuffersMemory()[i], nullptr);
+        }
 
     }
     void Model::loadModel(std::string MODEL_PATH) {

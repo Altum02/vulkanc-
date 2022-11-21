@@ -22,8 +22,10 @@ namespace mv{
         void createTextureImageView();
         void createTextureSampler();
         VkImageView createImageView(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags, uint32_t mipLevels);
-        VkImageView getTextureImageView(){return textureImageView;}
-        VkSampler getTextureSampler(){return textureSampler;}
+        VkImageView &getTextureImageView(){return textureImageView;}
+        VkSampler &getTextureSampler(){return textureSampler;}
+        VkImage &getTextureImage(){return textureImage;}
+        VkDeviceMemory &getTextureImageMemory(){return textureImageMemory;}
         private:
         uint32_t mipLevels;
         VkImage textureImage;

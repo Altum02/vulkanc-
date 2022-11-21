@@ -15,6 +15,7 @@ namespace mv{
         void createDescriptorPool();
         void createDescriptorSets();
         std::vector<VkDescriptorSet> getDescriptorSets(){return descriptorSets;}
+        VkDescriptorPool getDescriptorPool(){return descriptorPool;}
         private:
         Device &dev;
         Swapchain &sc;

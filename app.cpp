@@ -143,10 +143,69 @@ namespace mv{
 
             vkCmdDrawIndexed(commandBuffer, static_cast<uint32_t>(mod.getIndices().size()), 1, 0, 0, 0);
 
+            VkBuffer vertexBuffers2[] = {mod2.getVertexBuffer()};
+            // VkDeviceSize offsets[] = {0};
+            vkCmdBindVertexBuffers(commandBuffer, 0, 1, vertexBuffers2, offsets);
+
+            vkCmdBindIndexBuffer(commandBuffer, mod2.getIndexBuffer(), 0, VK_INDEX_TYPE_UINT32);
+
+            vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipe.getPipelineLayout(), 0, 1, &des2.getDescriptorSets()[sc.getCurrentFrame()], 0, nullptr);
+
+            vkCmdDrawIndexed(commandBuffer, static_cast<uint32_t>(mod2.getIndices().size()), 1, 0, 0, 0);
+
         vkCmdEndRenderPass(commandBuffer);
 
         if (vkEndCommandBuffer(commandBuffer) != VK_SUCCESS) {
             throw std::runtime_error("failed to record command buffer!");
         }
+    }
+    void App::cleanup() {
+        sc.cleanupSwapChain();
+
+        vkDestroyPipeline(dev.getDevice(), pipe.getGraphicsPipeline(), nullptr);
+        vkDestroyPipelineLayout(dev.getDevice(), pipe.getPipelineLayout(), nullptr);
+        vkDestroyRenderPass(dev.getDevice(), sc.getRenderPass(), nullptr);
+
+        for (size_t i = 0; i < sc.getMFIF(); i++) {
+            vkDestroyBuffer(dev.getDevice(), mod.getUniformBuffers()[i], nullptr);
+            vkFreeMemory(dev.getDevice(), mod.getUniformBuffersMemory()[i], nullptr);
+        }
+
+        vkDestroyDescriptorPool(dev.getDevice(), des.getDescriptorPool(), nullptr);
+
+        vkDestroySampler(dev.getDevice(), tex.getTextureSampler(), nullptr);
+        vkDestroyImageView(dev.getDevice(), tex.getTextureImageView(), nullptr);
+
+        vkDestroyImage(dev.getDevice(), tex.getTextureImage(), nullptr);
+        vkFreeMemory(dev.getDevice(), tex.getTextureImageMemory(), nullptr);
+
+        vkDestroyDescriptorSetLayout(dev.getDevice(), lay.getDescriptorSetLayout(), nullptr);
+
+        vkDestroyBuffer(dev.getDevice(), mod.getIndexBuffer(), nullptr);
+        vkFreeMemory(dev.getDevice(), mod.getIndexBufferMemory(), nullptr);
+
+        vkDestroyBuffer(dev.getDevice(), mod.getVertexBuffer(), nullptr);
+        vkFreeMemory(dev.getDevice(), mod.getVertexBufferMemory(), nullptr);
+
+        for (size_t i = 0; i < sc.getMFIF(); i++) {
+            vkDestroySemaphore(dev.getDevice(), sc.getRFS()[i], nullptr);
+            vkDestroySemaphore(dev.getDevice(), sc.getIAS()[i], nullptr);
+            vkDestroyFence(dev.getDevice(), sc.getIFF()[i], nullptr);
+        }
+
+        vkDestroyCommandPool(dev.getDevice(), dev.getCommandPool(), nullptr);
+
+        vkDestroyDevice(dev.getDevice(), nullptr);
+
+        if (dev.getEnableValidationLayers()) {
+            dev.DestroyDebugUtilsMessengerEXT(dev.getInstance(), dev.getDebug(), nullptr);
+        }
+
+        vkDestroySurfaceKHR(dev.getInstance(), dev.getSurface(), nullptr);
+        vkDestroyInstance(dev.getInstance(), nullptr);
+
+        glfwDestroyWindow(win.getWindow());
+
+        glfwTerminate();
     }
 }
